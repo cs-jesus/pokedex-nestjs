@@ -5,7 +5,6 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class PokemonService {
-
   constructor(private readonly prisma: PrismaService) {}
 
   create(createPokemonDto: CreatePokemonDto) {
@@ -13,11 +12,11 @@ export class PokemonService {
   }
 
   findAll() {
-    return `This action returns all pokemon`;
+    return 'this.prisma.pokemon.findMany()';
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} pokemon`;
+    return `This action returns a #${1} pokemon`;
   }
 
   update(id: number, updatePokemonDto: UpdatePokemonDto) {
