@@ -8,3 +8,13 @@ Content-Type: application/json
     "name": "Pikachu",
     "Height": 95
 }
+
+
+###
+PUT http://localhost:3000/pokemon/1 
+Content-Type: application/json
+
+{
+    "name": "Pikachu",
+    "Height": 95
+}
