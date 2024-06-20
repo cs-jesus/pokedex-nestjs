@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
+import { Pokemon as PokemonModel } from '@prisma/client';
 
 @Controller('pokemon')
 export class PokemonController {
@@ -12,10 +13,7 @@ export class PokemonController {
     return this.pokemonService.create(createPokemonDto);
   }
 
-  @Get()
-  findAll() {
-    return this.pokemonService.findAll();
-  }
+  
 
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -29,6 +27,18 @@ export class PokemonController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.pokemonService.remove(+id);
+    return this.pokemonService.remove(+id);  
+  }
+
+  @Get('Pokemons')
+  async getPokemons(): Promise<PokemonModel[]> {
+    return this.pokemonService.findAllPokemons({});
+  }
+
+  @Post('pokemon')
+  async newPokemon(
+    @Body() pokemonData: { name: string; height: number},
+  ): Promise<PokemonModel> {
+    return this.pokemonService.createPokemon(pokemonData);
   }
 }
